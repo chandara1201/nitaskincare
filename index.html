@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NITA Skincare - ហាងលក់ផលិតផលថែរក្សាស្បែក</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kantumruy Pro', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f7efe6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #fcf8f3;
+            min-height: 100vh;
+            box-shadow: 0 0 25px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background-color: rgba(252, 248, 243, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #ebdccc;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 3px 8px rgba(231, 158, 127, 0.3);
+        }
+
+        .brand-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #222;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid #ebdccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            color: #444;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: #f7efe6;
+            color: #e79e7f;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #d9534f;
+            color: white;
+            font-size: 0.65rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(217, 83, 79, 0.4);
+        }
+
+        /* Content */
+        .content {
+            padding: 20px;
+            flex: 1;
+            padding-bottom: 40px;
+        }
+
+        .section-heading {
+            font-size: 1.15rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-heading span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #777;
+        }
+
+        /* Search Box */
+        .search-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #e0d0c0;
+            border-radius: 12px;
+            background-color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-container input:focus {
+            border-color: #e79e7f;
+            box-shadow: 0 0 0 3px rgba(231, 158, 127, 0.15);
+        }
+
+        /* Categories */
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            padding: 8px 18px;
+            border: 1px solid #d4c3b3;
+            border-radius: 20px;
+            background: #fff;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background-color: #222;
+            color: #fff;
+            border-color: #222;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Product List Container */
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        .product-top {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .product-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            object-fit: cover;
+            background-color: #e2d7cc;
+        }
+
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-info h3 {
+            font-size: 1.05rem;
+            color: #222;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .price-select {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #e79e7f;
+            background: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 6px;
+            outline: none;
+            color: #333;
+            font-family: 'Kantumruy Pro', sans-serif;
+        }
+
+        .status-badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .badge.gray {
+            background-color: #f0ebd8;
+            color: #555;
+        }
+
+        .badge.green {
+            background-color: #d8f3dc;
+            color: #2b9348;
+        }
+
+        .badge.red {
+            background-color: #ffe5e5;
+            color: #d9534f;
+        }
+
+        /* Product About Section */
+        .product-about {
+            background-color: #faf6f0;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            border-left: 3px solid #e79e7f;
+        }
+
+        .product-about h4 {
+            font-size: 0.85rem;
+            color: #333;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .product-about p {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #e79e7f;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .buy-btn:hover {
+            background-color: #d88b6b;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.98);
+        }
+
+        .buy-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #fff;
+            padding: 18px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            margin-bottom: 20px;
+        }
+
+        .contact-section h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .contact-list li:hover {
+            opacity: 0.8;
+        }
+
+        .contact-list i {
+            width: 28px;
+            height: 28px;
+            background: #f7efe6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .creator-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            padding-bottom: 10px;
+        }
+
+        /* Modal Styles for Cart & Checkout */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 480px;
+            background: #fff;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 24px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.1, 1, 0.1, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .cart-items-list {
+            overflow-y: auto;
+            max-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #fcf8f3;
+            border-radius: 10px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 0.95rem;
+            color: #222;
+        }
+
+        .cart-item-info span {
+            font-size: 0.85rem;
+            color: #d9534f;
+            font-weight: 600;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            background: #e79e7f;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-item {
+            color: #d9534f;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2b9348;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #237a3c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-area">
+                <img src="https://scontent.fpnh11-2.fna.fbcdn.net/v/t39.30808-6/760824280_122275099694061337_461266735172726566_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeGmpsi8CN-tVvOOFyNCXZSa5h8Sj-WXoKDmHxKP5ZegoO0L1cYkQt5k-mLYjnD4c1GFi1kdwBzGrLjBXaStjO7G&_nc_ohc=LsXEEMMdnwYQ7kNvwFNB_Nn&_nc_oc=AdraY8-xjA9nzcO3TyDUOqVvIitA11lbhIgUAeQlRSGSYul6RHE3vo13N63ipaRHUe0&_nc_zt=23&_nc_ht=scontent.fpnh11-2.fna&_nc_gid=QJyv1MIrm6YXSPKH9rGrcA&_nc_ss=7b2a8&oh=00_AQGSckvpShvwRUDXUufxpLJpxu4UNNKM5KRiitSLsY8vJw&oe=6A7F176E" alt="NITA Skincare Logo" class="logo-img">
+                <h1 class="brand-name">NITA Skincare</h1>
+            </div>
+            <div class="header-icons">
+                <div class="icon-btn" onclick="toggleCartModal()" title="កន្ត្រកទំនិញ">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="section-heading">
+                ផលិតផលទាំងអស់
+                <span id="productCount">បង្ហាញ 0 ផលិតផល</span>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="ស្វែងរកឈ្មោះ ឬព័ត៌មានផលិតផល...">
+            </div>
+
+            <!-- Categories -->
+            <div class="categories-scroll" id="categoryContainer">
+                <button class="cat-btn active" data-category="all">ទាំងអស់</button>
+                <button class="cat-btn" data-category="Skincare">Skincare</button>
+                <button class="cat-btn" data-category="Mask">ម៉ាស់</button>
+                <button class="cat-btn" data-category="សាប៊ូកក់">សាប៊ូកក់</button>
+                <button class="cat-btn" data-category="Foam">ហ្វូមលាងមុខ</button>
+            </div>
+
+            <!-- Dynamic Product List -->
+            <div class="product-list" id="productList">
+                <!-- Rendered by JavaScript -->
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h3>ទំនាក់ទំនងបញ្ជាទិញផ្ទាល់៖</h3>
+                <ul class="contact-list">
+                    <li onclick="openFacebookPage()">
+                        <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
+                        <span>Facebook Page: <strong>Nita Skincare (ចុចទីនេះ)</strong></span>
+                    </li>
+                    <li onclick="openTelegram()">
+                        <i class="fa-brands fa-telegram" style="color: #0088cc;"></i>
+                        <span>Telegram: <strong>@nitaskincare</strong></span>
+                    </li>
+                    <li onclick="makePhoneCall()">
+                        <i class="fa-solid fa-phone" style="color: #2b9348;"></i>
+                        <span>ទូរស័ព្ទ: <strong>012 345 678</strong></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="creator-footer">
+                <p>(បង្កើតឡើងដោយ៖ នី ច័ន្ទតារា)</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Cart Modal Drawer -->
+    <div class="modal-overlay" id="cartModal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>កន្ត្រកទំនិញរបស់អ្នក</h3>
+                <button class="close-modal" onclick="toggleCartModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list" id="cartItemsList">
+                <!-- Cart items injected via JS -->
+            </div>
+            <div class="cart-total">
+                <span>សរុបរួម:</span>
+                <span id="cartTotalPrice">0.00 $</span>
+            </div>
+            <button class="checkout-btn" onclick="proceedCheckout()">បញ្ជាក់ការបញ្ជាទិញតាម Telegram</button>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "នីតា Foam Premium",
+                category: "Foam",
+                hasWholesale: false,
+                wholesalePriceNum: 0,
+                wholesalePriceStr: "មិនមានលក់បោះដុំ",
+                retailPriceNum: 6.00,
+                retailPriceStr: "6.00 $",
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ សម្អាតធូលីដី ខ្លាញ់ និងកខ្វក់ជ្រៅក្នុងរន្ធរោម ✔️ រក្សាសំណើម ឱ្យស្បែកទន់រលោង មិនស្ងួតតឹង ✔️ ជួយឱ្យស្បែកមើលទៅភ្លឺថ្លា និងកាត់បន្ថយបញ្ហាមុន ព្រមទាំងស្នាមស្រអាប់ 💙 ចំណុះ 100ml ប្រើបានយូរ សាកសមសម្រាប់គ្រប់ប្រភេទស្បែក។",
+                imageUrl: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 2,
+                name: "នីតា ម៉ាស់ម៉ាចឆា",
+                category: "Mask",
+                hasWholesale: true,
+                wholesalePriceNum: 3.50,
+                wholesalePriceStr: "3.50 $",
+                retailPriceNum: 5.00,
+                retailPriceStr: "5.00 $",
+                statusStock: "អស់ស្តុក",
+                inStock: false,
+                about: "✔️ ផ្សំពីម៉ាចឆាធម្មជាតិជួយបឺតជញ្ជក់ជាតិពុលលើស្បែក ✔️ បន្ថយភាពក្រហមនិងរលាកស្បែក ✔️ ផ្ដល់ភាពស្រស់ថ្លាភ្លាមៗក្រោយពេលលាប 💙 ចំណុះ 100ml សាកសមសម្រាប់ស្បែកខ្លាញ់និងមានមុន។",
+                imageUrl: "https://images.unsplash.com/photo-1608248597359-f53815f4e0c8?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: 3,
+                name: "សាប៊ូកក់សក់ នីតា Herbal",
+                category: "សាប៊ូកក់",
+                hasWholesale: true,
+                wholesalePriceNum: 4.50,
+                wholesalePriceStr: "4.50 $",
+                retailPriceNum: 7.00,
+                retailPriceStr: "7.00 $",
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ ផ្សំពីឱសថធម្មជាតិជួយបំប៉នឬសសក់ ✔️ បន្ថយការជ្រុះសក់និងជួយឱ្យសក់ដុះក្រាស់ល្អ ✔️ កាត់បន្ថយក្រហាយស្បែកក្បាលនិងអង្កែ 💙 ចំណុះ 250ml។",
+                imageUrl: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80"
+            }
+        ];
+
+        let cart = [];
+
+        function openFacebookPage() {
+            window.open("https://www.facebook.com/NitaonlineShop168168", "_blank");
+        }
+
+        function openTelegram() {
+            window.open("https://t.me/nitaskincare", "_blank");
+        }
+
+        function makePhoneCall() {
+            window.location.href = "tel:012345678";
+        }
+
+        function displayProducts(productsToDisplay) {
+            const productListEl = document.getElementById('productList');
+            const productCountEl = document.getElementById('productCount');
+            productListEl.innerHTML = '';
+            productCountEl.textContent = `បង្ហាញ ${productsToDisplay.length} ផលិតផល`;
+
+            if (productsToDisplay.length === 0) {
+                productListEl.innerHTML = `
+                    <div style="text-align:center; padding: 40px 20px; color:#777;">
+                        <i class="fa-solid fa-box-open" style="font-size: 2.5rem; margin-bottom: 10px; color: #d4c3b3;"></i>
+                        <p>រកមិនឃើញផលិតផលដែលអ្នកត្រូវការទេ</p>
+                    </div>`;
+                return;
+            }
+
+            productsToDisplay.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let priceSelectorHtml = '';
+                if (product.hasWholesale) {
+                    priceSelectorHtml = `
+                        <select class="price-select" id="price-select-${product.id}">
+                            <option value="retail">តម្លៃរាយ: ${product.retailPriceStr}</option>
+                            <option value="wholesale">តម្លៃបោះដុំ: ${product.wholesalePriceStr}</option>
+                        </select>`;
+                } else {
+                    priceSelectorHtml = `
+                        <select class="price-select" id="price-select-${product.id}" disabled>
+                            <option value="retail">តម្លៃរាយ: ${product.retailPriceStr} (គ្មានបោះដុំ)</option>
+                        </select>`;
+                }
+
+                card.innerHTML = `
+                    <div class="product-top">
+                        <img src="${product.imageUrl}" alt="${product.name}" class="product-img" loading="lazy">
+                        <div class="product-info">
+                            <div>
+                                <h3>${product.name}</h3>
+                                ${priceSelectorHtml}
+                            </div>
+                            <div class="status-badges">
+                                <span class="badge gray">${product.statusStock}</span>
+                                <span class="badge ${product.inStock ? 'green' : 'red'}">${product.inStock ? 'មានក្នុងស្តុក' : 'អស់ស្តុក'}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-about">
+                        <h4>អំពីផលិតផល</h4>
+                        <p>${product.about}</p>
+                    </div>
+                    <button class="buy-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCart(${product.id})">
+                        <i class="fa-solid fa-cart-plus"></i> ${product.inStock ? 'បន្ថែមចូលកន្ត្រក' : 'អស់ទំនិញ'}
+                    </button>
+                `;
+                productListEl.appendChild(card);
+            });
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product || !product.inStock) return;
+
+            const selectEl = document.getElementById(`price-select-${productId}`);
+            const selectedType = selectEl ? selectEl.value : 'retail';
+
+            let priceNum = product.retailPriceNum;
+            let priceStr = product.retailPriceStr;
+            let typeLabel = "តម្លៃរាយ";
+
+            if (selectedType === 'wholesale' && product.hasWholesale) {
+                priceNum = product.wholesalePriceNum;
+                priceStr = product.wholesalePriceStr;
+                typeLabel = "តម្លៃបោះដុំ";
+            }
+
+            const existingIndex = cart.findIndex(item => item.id === productId && item.typeLabel === typeLabel);
+
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: product.name,
+                    priceNum: priceNum,
+                    priceStr: priceStr,
+                    typeLabel: typeLabel,
+                    qty: 1
+                });
+            }
+
+            updateCartBadge();
+
+            const badge = document.getElementById('cartCount');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => badge.style.transform = 'scale(1)', 200);
+        }
+
+        function updateCartBadge() {
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').textContent = totalCount;
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+            if (modal.classList.contains('active')) {
+                renderCartItems();
+            }
+        }
+
+        function closeModalOutside(event) {
+            if (event.target.id === 'cartModal') {
+                toggleCartModal();
+            }
+        }
+
+        function renderCartItems() {
+            const listEl = document.getElementById('cartItemsList');
+            const totalEl = document.getElementById('cartTotalPrice');
+            listEl.innerHTML = '';
+
+            if (cart.length === 0) {
+                listEl.innerHTML = '<p style="text-align:center; color:#777; padding: 20px;">កន្ត្រកទំនិញរបស់អ្នកទទេ</p>';
+                totalEl.textContent = '0.00 $';
+                return;
+            }
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemTotalPrice = item.priceNum * item.qty;
+                total += itemTotalPrice;
+
+                const row = document.createElement('div');
+                row.className = 'cart-item-row';
+                row.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <span>(${item.typeLabel}) - ${(item.priceNum).toFixed(2)} $</span>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                        <span style="font-weight: bold; font-size: 0.9rem; padding: 0 4px;">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                        <button class="remove-item" onclick="removeFromCart(${index})" title="លុបចេញ"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+                listEl.appendChild(row);
+            });
+
+            totalEl.textContent = total.toFixed(2) + ' $';
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function proceedCheckout() {
+            if (cart.length === 0) return;
+            
+            let message = "សួស្តី! ខ្ញុំចង់បញ្ជាទិញផលិតផលដូចខាងក្រោម៖%0A";
+            let total = 0;
+            
+            cart.forEach((item, i) => {
+                const subtotal = item.priceNum * item.qty;
+                message += `${i + 1}. ${item.name} (${item.typeLabel}) x${item.qty} - ${subtotal.toFixed(2)} $%0A`;
+                total += subtotal;
+            });
+            
+            message += `%0Aសរុបរួម: ${total.toFixed(2)} $`;
+            
+            const telegramUrl = `https://t.me/nitaskincare?text=${message}`;
+            window.open(telegramUrl, '_blank');
+        }
+
+        function filterProducts() {
+            const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+            const activeCategoryBtn = document.querySelector('.cat-btn.active');
+            const activeCategory = activeCategoryBtn ? activeCategoryBtn.getAttribute('data-category') : 'all';
+            
+            let filtered = products.filter(p => 
+                p.name.toLowerCase().includes(keyword) || p.about.toLowerCase().includes(keyword)
+            );
+
+            if (activeCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === activeCategory);
+            }
+
+            displayProducts(filtered);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+
+        const categoryButtons = document.querySelectorAll('.cat-btn');
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterProducts();
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            displayProducts(products);
+        });
+    </script>
+</body>
+</html>
