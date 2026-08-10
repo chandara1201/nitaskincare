@@ -8,6 +8,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #d47a55;
+            --primary-hover: #c06541;
+            --bg-color: #f5efe6;
+            --card-bg: #ffffff;
+            --text-main: #2c221e;
+            --text-muted: #786c65;
+            --border-color: #ebdccc;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,8 +27,8 @@
         }
 
         body {
-            background-color: #f7efe6;
-            color: #333;
+            background-color: #e8ded1;
+            color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,26 +38,26 @@
         .app-container {
             width: 100%;
             max-width: 480px;
-            background-color: #fcf8f3;
+            background-color: var(--bg-color);
             min-height: 100vh;
-            box-shadow: 0 0 25px rgba(0,0,0,0.08);
+            box-shadow: 0 0 30px rgba(0,0,0,0.12);
             display: flex;
             flex-direction: column;
             position: relative;
         }
 
-        /* Header */
+        /* Header Modern Redesign */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 16px 20px;
-            background-color: rgba(252, 248, 243, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 14px 20px;
+            background-color: rgba(245, 239, 230, 0.9);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 10;
-            border-bottom: 1px solid #ebdccc;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo-area {
@@ -57,122 +67,132 @@
         }
 
         .logo-img {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             object-fit: cover;
-            box-shadow: 0 3px 8px rgba(231, 158, 127, 0.3);
+            box-shadow: 0 4px 10px rgba(212, 122, 85, 0.25);
+            border: 2px solid #fff;
         }
 
-        .brand-name {
-            font-size: 1.3rem;
+        .brand-info h1 {
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #222;
+            color: var(--text-main);
+            line-height: 1.2;
         }
 
-        .header-icons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
+        .brand-info span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
 
         .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             background: #fff;
-            border: 1px solid #ebdccc;
+            border: 1px solid var(--border-color);
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             position: relative;
-            color: #444;
-            transition: all 0.2s ease;
+            color: var(--text-main);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .icon-btn:hover {
-            background: #f7efe6;
-            color: #e79e7f;
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
         }
 
         .cart-badge {
             position: absolute;
-            top: -2px;
-            right: -2px;
-            background-color: #d9534f;
+            top: -5px;
+            right: -5px;
+            background-color: #e54848;
             color: white;
             font-size: 0.65rem;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(217, 83, 79, 0.4);
+            border: 2px solid #fff;
+            box-shadow: 0 2px 5px rgba(229, 72, 72, 0.4);
         }
 
-        /* Content */
+        /* Content Area */
         .content {
             padding: 20px;
             flex: 1;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
         }
 
         .section-heading {
-            font-size: 1.15rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
             font-weight: 700;
-            color: #222;
+            color: var(--text-main);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .section-heading span {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: #777;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: #ebdccc;
+            padding: 3px 10px;
+            border-radius: 20px;
+            color: var(--text-muted);
         }
 
-        /* Search Box */
+        /* Modern Search Input */
         .search-container {
             position: relative;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .search-container i {
             position: absolute;
-            left: 15px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: #888;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         .search-container input {
             width: 100%;
-            padding: 12px 15px 12px 45px;
-            border: 1px solid #e0d0c0;
-            border-radius: 12px;
+            padding: 13px 16px 13px 46px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
             background-color: #fff;
             font-size: 0.95rem;
             outline: none;
-            transition: all 0.3s;
+            color: var(--text-main);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
         }
 
         .search-container input:focus {
-            border-color: #e79e7f;
-            box-shadow: 0 0 0 3px rgba(231, 158, 127, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(212, 122, 85, 0.15);
         }
 
-        /* Categories */
+        /* Refined Categories Scroll */
         .categories-scroll {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: auto;
-            padding-bottom: 5px;
+            padding-bottom: 6px;
             margin-bottom: 20px;
             scrollbar-width: none;
         }
@@ -182,67 +202,69 @@
         }
 
         .cat-btn {
-            padding: 8px 18px;
-            border: 1px solid #d4c3b3;
-            border-radius: 20px;
+            padding: 9px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             background: #fff;
             white-space: nowrap;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             cursor: pointer;
-            transition: all 0.2s;
-            color: #555;
+            transition: all 0.25s ease;
+            color: var(--text-muted);
             font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .cat-btn.active, .cat-btn:hover {
-            background-color: #222;
+            background-color: var(--text-main);
             color: #fff;
-            border-color: #222;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-color: var(--text-main);
+            box-shadow: 0 4px 12px rgba(44, 34, 30, 0.2);
         }
 
-        /* Product List Container */
+        /* Product List */
         .product-list {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
-        /* Product Card */
+        /* Card Modern Redesign */
         .product-card {
-            background: #fff;
-            border-radius: 16px;
+            background: var(--card-bg);
+            border-radius: 18px;
             padding: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #eee;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            animation: fadeIn 0.3s ease-in-out;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(235, 220, 204, 0.6);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            animation: fadeIn 0.35s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .product-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
         }
 
         .product-top {
             display: flex;
             gap: 14px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .product-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
+            width: 105px;
+            height: 105px;
+            border-radius: 14px;
             flex-shrink: 0;
             object-fit: cover;
-            background-color: #e2d7cc;
+            background-color: #f0ebd8;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
         }
 
         .product-info {
@@ -253,24 +275,31 @@
         }
 
         .product-info h3 {
-            font-size: 1.05rem;
-            color: #222;
-            font-weight: 600;
-            margin-bottom: 4px;
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
         .price-select {
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1px solid #e79e7f;
+            padding: 7px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
             background: #fff;
-            font-size: 0.85rem;
+            font-size: 0.83rem;
             cursor: pointer;
             width: 100%;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             outline: none;
-            color: #333;
+            color: var(--text-main);
+            font-weight: 500;
             font-family: 'Kantumruy Pro', sans-serif;
+            transition: background 0.2s;
+        }
+
+        .price-select:focus {
+            background-color: #fdfaf6;
         }
 
         .status-badges {
@@ -280,68 +309,74 @@
         }
 
         .badge {
-            font-size: 0.7rem;
-            padding: 3px 8px;
+            font-size: 0.68rem;
+            padding: 3px 9px;
             border-radius: 6px;
-            font-weight: 500;
-        }
-
-        .badge.gray {
-            background-color: #f0ebd8;
-            color: #555;
-        }
-
-        .badge.green {
-            background-color: #d8f3dc;
-            color: #2b9348;
-        }
-
-        .badge.red {
-            background-color: #ffe5e5;
-            color: #d9534f;
-        }
-
-        /* Product About Section */
-        .product-about {
-            background-color: #faf6f0;
-            padding: 10px 12px;
-            border-radius: 10px;
-            margin-bottom: 14px;
-            border-left: 3px solid #e79e7f;
-        }
-
-        .product-about h4 {
-            font-size: 0.85rem;
-            color: #333;
-            margin-bottom: 3px;
             font-weight: 600;
         }
 
+        .badge.gray {
+            background-color: #f3efe9;
+            color: var(--text-muted);
+        }
+
+        .badge.green {
+            background-color: #e2f4e6;
+            color: #1b8539;
+        }
+
+        .badge.red {
+            background-color: #fce8e6;
+            color: #d93838;
+        }
+
+        /* Accordion-style or sleek about box */
+        .product-about {
+            background-color: #fcf8f3;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            border-left: 3.5px solid var(--primary-color);
+        }
+
+        .product-about h4 {
+            font-size: 0.82rem;
+            color: var(--text-main);
+            margin-bottom: 3px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .product-about p {
-            font-size: 0.8rem;
-            color: #666;
-            line-height: 1.4;
+            font-size: 0.79rem;
+            color: var(--text-muted);
+            line-height: 1.45;
         }
 
         .buy-btn {
             width: 100%;
-            padding: 10px;
-            background-color: #e79e7f;
+            padding: 11px;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 0.95rem;
+            border-radius: 12px;
+            font-size: 0.92rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            box-shadow: 0 4px 12px rgba(212, 122, 85, 0.3);
         }
 
         .buy-btn:hover {
-            background-color: #d88b6b;
+            background-color: var(--primary-hover);
+            box-shadow: 0 6px 15px rgba(212, 122, 85, 0.4);
+            transform: translateY(-1px);
         }
 
         .buy-btn:active {
@@ -349,25 +384,26 @@
         }
 
         .buy-btn:disabled {
-            background-color: #ccc;
+            background-color: #d1cbc5;
+            box-shadow: none;
             cursor: not-allowed;
         }
 
-        /* Contact Section */
+        /* Contact Section Styling */
         .contact-section {
-            background-color: #fff;
-            padding: 18px;
-            border-radius: 16px;
-            border: 1px solid #eee;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid rgba(235, 220, 204, 0.6);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
             margin-bottom: 20px;
         }
 
         .contact-section h3 {
-            font-size: 1rem;
-            margin-bottom: 12px;
-            color: #222;
-            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 14px;
+            color: var(--text-main);
+            font-weight: 700;
         }
 
         .contact-list {
@@ -381,49 +417,56 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             cursor: pointer;
-            transition: opacity 0.2s;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #fdfaf6;
+            border: 1px solid #f2ebe1;
+            transition: all 0.2s ease;
         }
 
         .contact-list li:hover {
-            opacity: 0.8;
+            background: #f5efe6;
+            transform: translateX(3px);
         }
 
         .contact-list i {
-            width: 28px;
-            height: 28px;
-            background: #f7efe6;
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
         }
 
         .creator-footer {
             text-align: center;
-            font-size: 0.8rem;
-            color: #777;
+            font-size: 0.78rem;
+            color: var(--text-muted);
             padding-bottom: 10px;
+            font-weight: 500;
         }
 
-        /* Modal Styles for Cart & Checkout */
+        /* Modern Drawer Modal (Cart & Checkout) */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(4px);
+            background: rgba(44, 34, 30, 0.55);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: flex-end;
             z-index: 100;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .modal-overlay.active {
@@ -434,15 +477,16 @@
         .modal-content {
             width: 100%;
             max-width: 480px;
-            background: #fff;
-            border-top-left-radius: 24px;
-            border-top-right-radius: 24px;
+            background: var(--card-bg);
+            border-top-left-radius: 26px;
+            border-top-right-radius: 26px;
             padding: 24px;
-            max-height: 80vh;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
             transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.1, 1, 0.1, 1);
+            transition: transform 0.35s cubic-bezier(0.1, 1, 0.1, 1);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
         }
 
         .modal-overlay.active .modal-content {
@@ -454,49 +498,66 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
         }
 
         .modal-header h3 {
             font-size: 1.1rem;
             font-weight: 700;
+            color: var(--text-main);
         }
 
         .close-modal {
-            background: none;
+            background: #f5efe6;
             border: none;
-            font-size: 1.2rem;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1rem;
             cursor: pointer;
-            color: #777;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .close-modal:hover {
+            background: #ebdccc;
+            color: var(--text-main);
         }
 
         .cart-items-list {
             overflow-y: auto;
-            max-height: 40vh;
+            max-height: 42vh;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 16px;
+            padding-right: 4px;
         }
 
         .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background: #fcf8f3;
-            border-radius: 10px;
+            padding: 12px;
+            background: #fdfaf6;
+            border-radius: 14px;
+            border: 1px solid #f2ebe1;
         }
 
         .cart-item-info h4 {
-            font-size: 0.95rem;
-            color: #222;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 2px;
         }
 
         .cart-item-info span {
-            font-size: 0.85rem;
-            color: #d9534f;
+            font-size: 0.8rem;
+            color: var(--primary-color);
             font-weight: 600;
         }
 
@@ -507,26 +568,44 @@
         }
 
         .qty-btn {
-            background: #e79e7f;
-            color: white;
-            border: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
+            background: #f5efe6;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
         }
 
         .remove-item {
-            color: #d9534f;
-            background: none;
+            color: #d93838;
+            background: #fce8e6;
             border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
-            padding: 5px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .remove-item:hover {
+            opacity: 0.8;
         }
 
         .cart-total {
@@ -535,27 +614,36 @@
             font-size: 1.05rem;
             font-weight: 700;
             margin-bottom: 16px;
-            padding-top: 10px;
-            border-top: 1px dashed #ddd;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            color: var(--text-main);
         }
 
         .checkout-btn {
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             background-color: #2b9348;
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-align: center;
-            display: block;
-            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(43, 147, 72, 0.3);
+            transition: background 0.2s, transform 0.1s;
         }
 
         .checkout-btn:hover {
             background-color: #237a3c;
+        }
+
+        .checkout-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -565,8 +653,11 @@
         <!-- Header -->
         <header class="header">
             <div class="logo-area">
-                <img src="https://scontent.fpnh11-2.fna.fbcdn.net/v/t39.30808-6/760824280_122275099694061337_461266735172726566_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeGmpsi8CN-tVvOOFyNCXZSa5h8Sj-WXoKDmHxKP5ZegoO0L1cYkQt5k-mLYjnD4c1GFi1kdwBzGrLjBXaStjO7G&_nc_ohc=LsXEEMMdnwYQ7kNvwFNB_Nn&_nc_oc=AdraY8-xjA9nzcO3TyDUOqVvIitA11lbhIgUAeQlRSGSYul6RHE3vo13N63ipaRHUe0&_nc_zt=23&_nc_ht=scontent.fpnh11-2.fna&_nc_gid=QJyv1MIrm6YXSPKH9rGrcA&_nc_ss=7b2a8&oh=00_AQGSckvpShvwRUDXUufxpLJpxu4UNNKM5KRiitSLsY8vJw&oe=6A7F176E" alt="NITA Skincare Logo" class="logo-img">
-                <h1 class="brand-name">NITA Skincare</h1>
+                <img src="img/logo.png" alt="NITA Skincare Logo" class="logo-img">
+                <div class="brand-info">
+                    <h1>NITA Skincare</h1>
+                    <span>ផលិតផលថែរក្សាស្បែក</span>
+                </div>
             </div>
             <div class="header-icons">
                 <div class="icon-btn" onclick="toggleCartModal()" title="កន្ត្រកទំនិញ">
@@ -593,7 +684,6 @@
             <div class="categories-scroll" id="categoryContainer">
                 <button class="cat-btn active" data-category="all">ទាំងអស់</button>
                 <button class="cat-btn" data-category="Skincare">Skincare</button>
-                <button class="cat-btn" data-category="Mask">ម៉ាស់</button>
                 <button class="cat-btn" data-category="សាប៊ូកក់">សាប៊ូកក់</button>
                 <button class="cat-btn" data-category="Foam">ហ្វូមលាងមុខ</button>
             </div>
@@ -609,15 +699,15 @@
                 <ul class="contact-list">
                     <li onclick="openFacebookPage()">
                         <i class="fa-brands fa-facebook" style="color: #1877f2;"></i>
-                        <span>Facebook Page: <strong>Nita Skincare (ចុចទីនេះ)</strong></span>
+                        <span>Facebook Page: <strong>Nita Skincare</strong></span>
                     </li>
                     <li onclick="openTelegram()">
                         <i class="fa-brands fa-telegram" style="color: #0088cc;"></i>
-                        <span>Telegram: <strong>@nitaskincare</strong></span>
+                        <span>Telegram: <strong>@SREYMAI_12</strong></span>
                     </li>
                     <li onclick="makePhoneCall()">
                         <i class="fa-solid fa-phone" style="color: #2b9348;"></i>
-                        <span>ទូរស័ព្ទ: <strong>012 345 678</strong></span>
+                        <span>ទូរស័ព្ទ: <strong>031 387 8503</strong></span>
                     </li>
                 </ul>
             </div>
@@ -642,7 +732,9 @@
                 <span>សរុបរួម:</span>
                 <span id="cartTotalPrice">0.00 $</span>
             </div>
-            <button class="checkout-btn" onclick="proceedCheckout()">បញ្ជាក់ការបញ្ជាទិញតាម Telegram</button>
+            <button class="checkout-btn" onclick="proceedCheckout()">
+                <i class="fa-brands fa-telegram"></i> បញ្ជាក់ការបញ្ជាទិញតាម Telegram
+            </button>
         </div>
     </div>
 
@@ -660,25 +752,25 @@
                 statusStock: "នៅស្តុក",
                 inStock: true,
                 about: "✔️ សម្អាតធូលីដី ខ្លាញ់ និងកខ្វក់ជ្រៅក្នុងរន្ធរោម ✔️ រក្សាសំណើម ឱ្យស្បែកទន់រលោង មិនស្ងួតតឹង ✔️ ជួយឱ្យស្បែកមើលទៅភ្លឺថ្លា និងកាត់បន្ថយបញ្ហាមុន ព្រមទាំងស្នាមស្រអាប់ 💙 ចំណុះ 100ml ប្រើបានយូរ សាកសមសម្រាប់គ្រប់ប្រភេទស្បែក។",
-                imageUrl: "https://scontent.fpnh11-2.fna.fbcdn.net/v/t39.30808-6/767009542_122275701200061337_1708014389238746940_n.jpg?stp=dst-jpg_tt6&cstp=mx960x1280&ctp=s960x1280&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEQJp88YNEuGpzrXi_0Bsc5Y24BnU0LtvVjbgGdTQu29cC09F1CSxp60z6goXPv0zzAjXcdbpZ6LAG-nhqkfxBl&_nc_ohc=AsZ3b_drRGkQ7kNvwGhgLzR&_nc_oc=Adq5jU3rhxyIXUYVG_aE6AvP4pIqfXUjw-xBhD3CC-EgSOF9VQGafbaRul1L7my0MFo&_nc_zt=23&_nc_ht=scontent.fpnh11-2.fna&_nc_gid=T3BZvWlNeudAxzlAkjxxRg&_nc_ss=7b2a8&oh=00_AQHQEwManpacij6loNB4eGeZ26Ip4XKi4vcFGVb3CedfGQ&oe=6A7F1234"
+                imageUrl: "img/image3.png"
             },
             {
                 id: 2,
-                name: "នីតា ម៉ាស់ម៉ាចឆា",
-                category: "Mask",
+                name: "នីតា ស្ក្រាប់កាហ្វេធម្មជាតិ",
+                category: "Skincare",
                 hasWholesale: true,
                 wholesalePriceNum: 3.50,
                 wholesalePriceStr: "3.50 $",
                 retailPriceNum: 5.00,
                 retailPriceStr: "5.00 $",
-                statusStock: "អស់ស្តុក",
-                inStock: false,
-                about: "✔️ ផ្សំពីម៉ាចឆាធម្មជាតិជួយបឺតជញ្ជក់ជាតិពុលលើស្បែក ✔️ បន្ថយភាពក្រហមនិងរលាកស្បែក ✔️ ផ្ដល់ភាពស្រស់ថ្លាភ្លាមៗក្រោយពេលលាប 💙 ចំណុះ 100ml សាកសមសម្រាប់ស្បែកខ្លាញ់និងមានមុន។",
-                imageUrl: "https://images.unsplash.com/photo-1608248597359-f53815f4e0c8?auto=format&fit=crop&w=400&q=80"
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ ផ្សំពីកាហ្វេធម្មជាតិជួយដុះខាត់កោសិកាស្បែកងាប់ ✔️ ជួយឱ្យស្បែកសភ្លឺរលោងទន់ខ្សាយ ✔️ បំប៉នស្បែកឱ្យមានសំណើមនិងកាត់បន្ថយស្នាមអុចខ្មៅ 💙 ចំណុះ 350g។",
+                imageUrl: "img/image2.png"
             },
             {
                 id: 3,
-                name: "សាប៊ូកក់សក់ នីតា Herbal",
+                name: "សាប៊ូកក់សក់ នីតា Ginseng",
                 category: "សាប៊ូកក់",
                 hasWholesale: true,
                 wholesalePriceNum: 4.50,
@@ -687,8 +779,50 @@
                 retailPriceStr: "7.00 $",
                 statusStock: "នៅស្តុក",
                 inStock: true,
-                about: "✔️ ផ្សំពីឱសថធម្មជាតិជួយបំប៉នឬសសក់ ✔️ បន្ថយការជ្រុះសក់និងជួយឱ្យសក់ដុះក្រាស់ល្អ ✔️ កាត់បន្ថយក្រហាយស្បែកក្បាលនិងអង្កែ 💙 ចំណុះ 250ml។",
-                imageUrl: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=400&q=80"
+                about: "✔️ ផ្សំពីយិនស៊ិនធម្មជាតិជួយបំប៉នឬសសក់ ✔️ បន្ថយការជ្រុះសក់និងជួយឱ្យសក់ដុះក្រាស់ល្អ ✔️ កាត់បន្ថយក្រហាយស្បែកក្បាលនិងអង្កែ 💙 ចំណុះ 350g។",
+                imageUrl: "img/image1.png"
+            },
+            {
+                id: 4,
+                name: "Colognes Soap (សាប៊ូដុំកូឡូញ)",
+                category: "Skincare",
+                hasWholesale: true,
+                wholesalePriceNum: 2.50,
+                wholesalePriceStr: "2.50 $",
+                retailPriceNum: 4.00,
+                retailPriceStr: "4.00 $",
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ សាប៊ូក្រអូបក្លិនកូឡូញ ជួយសម្អាតស្បែកកាយបានយ៉ាងស្អាត ✔️ ផ្ដល់ក្លិនក្រអូបឈ្ងុយជាប់បានយូរ និងផ្ដល់សំណើមដល់ស្បែក។",
+                imageUrl: "img/image4.png"
+            },
+            {
+                id: 5,
+                name: "សាប៊ូកក់សក់ នីតា 3 in 1",
+                category: "សាប៊ូកក់",
+                hasWholesale: true,
+                wholesalePriceNum: 5.50,
+                wholesalePriceStr: "5.50 $",
+                retailPriceNum: 8.50,
+                retailPriceStr: "8.50 $",
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ សាប៊ូកក់សក់สูตร 3 in 1 ជំនួយដល់ការបំប៉ន សម្អាត និងថែទាំសក់ក្នុងពេលតែមួយ ✔️ ចំណុះធំ 500ml ប្រើប្រាស់បានយូរ សាកសមសម្រាប់គ្រប់ប្រភេទសក់។",
+                imageUrl: "img/image5.png"
+            },
+            {
+                id: 6,
+                name: "នីតា ម៉ាស់ម៉ាតា ធម្មជាតិសសុទ្ធ",
+                category: "Skincare",
+                hasWholesale: true,
+                wholesalePriceNum: 3.50,
+                wholesalePriceStr: "3.50 $",
+                retailPriceNum: 5.50,
+                retailPriceStr: "5.50 $",
+                statusStock: "នៅស្តុក",
+                inStock: true,
+                about: "✔️ ម៉ាស់បំប៉នស្បែកមុខផ្សំពីធម្មជាតិ 100% ✔️ ជួយបំប៉នស្បែកមុខឱ្យសភ្លឺរលោង កាត់បន្ថយស្នាមអុចខ្មៅ និងផ្តល់សំណើម ✔️ ចំណុះ 100g។",
+                imageUrl: "img/image6.png"
             }
         ];
 
@@ -699,11 +833,11 @@
         }
 
         function openTelegram() {
-            window.open("https://t.me/nitaskincare", "_blank");
+            window.open("https://t.me/sreymai_12", "_blank");
         }
 
         function makePhoneCall() {
-            window.location.href = "tel:012345678";
+            window.location.href = "tel:0313878503";
         }
 
         function displayProducts(productsToDisplay) {
@@ -714,7 +848,7 @@
 
             if (productsToDisplay.length === 0) {
                 productListEl.innerHTML = `
-                    <div style="text-align:center; padding: 40px 20px; color:#777;">
+                    <div style="text-align:center; padding: 40px 20px; color:var(--text-muted);">
                         <i class="fa-solid fa-box-open" style="font-size: 2.5rem; margin-bottom: 10px; color: #d4c3b3;"></i>
                         <p>រកមិនឃើញផលិតផលដែលអ្នកត្រូវការទេ</p>
                     </div>`;
@@ -748,13 +882,13 @@
                                 ${priceSelectorHtml}
                             </div>
                             <div class="status-badges">
-                                <span class="badge gray">${product.statusStock}</span>
+                                <span class="badge gray"><i class="fa-solid fa-check"></i> ${product.statusStock}</span>
                                 <span class="badge ${product.inStock ? 'green' : 'red'}">${product.inStock ? 'មានក្នុងស្តុក' : 'អស់ស្តុក'}</span>
                             </div>
                         </div>
                     </div>
                     <div class="product-about">
-                        <h4>អំពីផលិតផល</h4>
+                        <h4><i class="fa-solid fa-circle-info"></i> អំពីផលិតផល</h4>
                         <p>${product.about}</p>
                     </div>
                     <button class="buy-btn" ${!product.inStock ? 'disabled' : ''} onclick="addToCart(${product.id})">
@@ -800,7 +934,7 @@
             updateCartBadge();
 
             const badge = document.getElementById('cartCount');
-            badge.style.transform = 'scale(1.3)';
+            badge.style.transform = 'scale(1.4)';
             setTimeout(() => badge.style.transform = 'scale(1)', 200);
         }
 
@@ -829,7 +963,7 @@
             listEl.innerHTML = '';
 
             if (cart.length === 0) {
-                listEl.innerHTML = '<p style="text-align:center; color:#777; padding: 20px;">កន្ត្រកទំនិញរបស់អ្នកទទេ</p>';
+                listEl.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding: 30px 0;">កន្ត្រកទំនិញរបស់អ្នកទទេ</p>';
                 totalEl.textContent = '0.00 $';
                 return;
             }
@@ -844,11 +978,11 @@
                 row.innerHTML = `
                     <div class="cart-item-info">
                         <h4>${item.name}</h4>
-                        <span>(${item.typeLabel}) - ${(item.priceNum).toFixed(2)} $</span>
+                        <span>${(item.priceNum).toFixed(2)} $ (${item.typeLabel})</span>
                     </div>
                     <div class="cart-item-controls">
                         <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                        <span style="font-weight: bold; font-size: 0.9rem; padding: 0 4px;">${item.qty}</span>
+                        <span style="font-weight: 700; font-size: 0.9rem; padding: 0 2px;">${item.qty}</span>
                         <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
                         <button class="remove-item" onclick="removeFromCart(${index})" title="លុបចេញ"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
@@ -888,7 +1022,7 @@
             
             message += `%0Aសរុបរួម: ${total.toFixed(2)} $`;
             
-            const telegramUrl = `https://t.me/nitaskincare?text=${message}`;
+            const telegramUrl = `https://t.me/sremai_12?text=${message}`;
             window.open(telegramUrl, '_blank');
         }
 
